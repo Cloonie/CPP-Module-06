@@ -26,40 +26,42 @@ Base* generate(void)
 
 void identify(Base* p)
 {
-	if (dynamic_cast<A *>(p))
+	if (dynamic_cast<A*>(p))
 		std::cout << "A" << std::endl;
-	else if (dynamic_cast<B *>(p))
+	else if (dynamic_cast<B*>(p))
 		std::cout << "B" << std::endl;
-	else if (dynamic_cast<C *>(p))
+	else if (dynamic_cast<C*>(p))
 		std::cout << "C" << std::endl;
 }
 
-// void identify(Base& p)
-// {
-// 	try
-// 	{
-// 		A& a = dynamic_cast<A&>(p);
-// 	}
-// 	catch
-// 	void identify(Base& p) {
-//     try {
-//         A& a = dynamic_cast<A&>(p);
-//         std::cout << "A" << std::endl;
-//     } catch (std::bad_cast&) {
-//         // If it's not an instance of A, try B.
-//         try {
-//             B& b = dynamic_cast<B&>(p);
-//             std::cout << "B" << std::endl;
-//         } catch (std::bad_cast&) {
-//             // If it's not an instance of B, it must be C.
-//             std::cout << "C" << std::endl;
-//         }
-//     }
-// }
+void identify(Base& p)
+{
+	try
+	{
+		A& a = dynamic_cast<A&>(p);
+		(void)a;
+		std::cout << "A" << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		try
+		{
+			B& b = dynamic_cast<B&>(p);
+			(void)b;
+			std::cout << "B" << std::endl;
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "C" << std::endl;
+		}
+	}
+}
 
 int main(void)
 {
 	Base *base;
 	base = generate();
 	identify(base);
+	identify(*base);
+	delete base;
 }
