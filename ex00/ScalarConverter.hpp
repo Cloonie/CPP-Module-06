@@ -22,5 +22,4 @@ class ScalarConverter
 		static std::string	toInt(const std::string& input);
 		static std::string	toFloat(const std::string& input);
 		static std::string	toDouble(const std::string& input);
-		static std::string	getFloatString(float value);
 };

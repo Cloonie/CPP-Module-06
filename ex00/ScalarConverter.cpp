@@ -11,28 +11,33 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter &ref) {
 	return (*this);
 }
 
+bool	isAllNum(const std::string& str)
+{
+	for (int i = 0; str[i]; i++)
+	{
+		if (!isdigit(str[i]) && str[i] != '.' && str[i] != 'f')
+			return false;
+	}
+	return true;
+}
+
 void	ScalarConverter::convert(const std::string& input)
 {
-	std::cout << "char: " << toChar(input) << std::endl;
+	int	num = static_cast<int>(atoi(input.c_str()));
+
+	if (isAllNum(input) && num && (num < 32 || num > 126))
+		std::cout << "char: Non displayable" << std::endl;
+	else if (isAllNum(input) && num && num >= 32 && num <= 126)
+		std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
+	else if (input.length() == 1)
+		std::cout << "char: '" << input[0] << "'" << std::endl;
+	else
+		std::cout << "char: impossible" << std::endl;
 	std::cout << "int: " << toInt(input) << std::endl;
 	std::cout << "float: " << toFloat(input) << std::endl;
 	std::cout << "double: " << toDouble(input) << std::endl;
 }
 
-std::string ScalarConverter::toChar(const std::string& input) 
-{
-	char	actualType = input[0];
-
-	if (actualType == '0')
-		return "Non displayable";
-	else if (input.length() == 1)
-		return "'" + input + "'";
-	else if (input == "42.0f")
-		return "'*'";
-	else
-		return "impossible";
-	return (0);
-}
 
 std::string	ScalarConverter::toInt(const std::string& input)
 {
