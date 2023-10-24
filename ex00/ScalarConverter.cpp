@@ -36,7 +36,7 @@ std::string ScalarConverter::toChar(const std::string& input)
 
 std::string	ScalarConverter::toInt(const std::string& input)
 {
-	int	actualType = atoi(input.c_str());
+	int	actualType = static_cast<int>(atoi(input.c_str()));
 
 	if (input == "0")
 		return input;
@@ -54,7 +54,7 @@ std::string	ScalarConverter::toInt(const std::string& input)
 
 std::string	ScalarConverter::toFloat(const std::string& input)
 {
-	float actualType = strtof(input.c_str(), NULL);
+	float actualType = static_cast<float>(strtof(input.c_str(), NULL));
 
 	if (std::isnan(actualType))
 		return "nanf";
@@ -73,7 +73,7 @@ std::string	ScalarConverter::toFloat(const std::string& input)
 
 std::string	ScalarConverter::toDouble(const std::string& input)
 {
-	double actualType = strtod(input.c_str(), NULL);
+	double actualType = static_cast<double>(strtod(input.c_str(), NULL));
 
 	if (std::isnan(actualType))
 		return "nan";
