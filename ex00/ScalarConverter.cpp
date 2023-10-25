@@ -98,7 +98,9 @@ std::string	ScalarConverter::toFloat(const std::string& input)
 	else
 	{
 		for (int i = 0; input[i]; i++)
-			if (!isdigit(input[i]) && input[i] != '.' && input[input.length() - 1] != 'f')
+			if (!isdigit(input[i]) && input[i] != '.'
+				&& input[i] != '-' && input[i] != '+'
+				&& input[input.length() - 1] != 'f')
 				return "impossible";
 		char buffer[32];
 		snprintf(buffer, sizeof(buffer), "%.1ff", actualType);
@@ -132,7 +134,9 @@ std::string	ScalarConverter::toDouble(const std::string& input)
 	else
 	{
 		for (int i = 0; input[i]; i++)
-			if (!isdigit(input[i]) && input[i] != '.' && input[input.length() - 1] != 'f')
+			if (!isdigit(input[i]) && input[i] != '.'
+				&& input[i] != '-' && input[i] != '+'
+				&& input[input.length() - 1] != 'f')
 				return "impossible";
 		char buffer[32];
 		snprintf(buffer, sizeof(buffer), "%.1f", actualType);
