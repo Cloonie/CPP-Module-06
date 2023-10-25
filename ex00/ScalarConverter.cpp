@@ -121,7 +121,7 @@ std::string	ScalarConverter::toDouble(const std::string& input)
 	{
 		double ascii_dec = ascii;
 		char buffer[32];
-		snprintf(buffer, sizeof(buffer), "%.1ff", ascii_dec);
+		snprintf(buffer, sizeof(buffer), "%.1f", ascii_dec);
 		return buffer;
 	}
 	else if (input.length() == 1 && (actualType >= 32 && actualType <= 126))
